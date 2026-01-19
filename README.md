@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Elisa Rocha Real Estate Website
 
-## Getting Started
+A professional real estate agent website for Elisa Rocha, built with Next.js and deployed on Cloudflare Workers.
 
-First, run the development server:
+## Live Website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**[https://elisa.visibleseed.com](https://elisa.visibleseed.com)**
+
+## Features
+
+- **Home Page** - Hero section with agent profile, stats, featured listings, and testimonials
+- **About** - Detailed agent bio and professional background
+- **Listings** - Browse active, sold, and leased properties with filtering
+- **Listing Details** - Full property information with image gallery
+- **Reviews** - Client testimonials and ratings
+- **Recommendations** - Professional endorsements
+- **Neighborhoods** - Area guides for Houston neighborhoods
+- **Contact** - Contact form with Discord webhook notifications (demo mode)
+
+## Tech Stack
+
+- **Framework:** Next.js 16 with App Router
+- **Styling:** Tailwind CSS 4
+- **Icons:** Lucide React
+- **Hosting:** Cloudflare Workers (via OpenNext)
+- **Database:** Supabase PostgreSQL (currently using mock data for demo)
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Home page
+│   ├── about/             # About page
+│   ├── listings/          # Listings pages
+│   │   ├── page.tsx       # All listings
+│   │   └── [id]/          # Listing detail
+│   ├── reviews/           # Reviews page
+│   ├── recommendations/   # Recommendations page
+│   ├── neighborhoods/     # Neighborhood pages
+│   │   ├── page.tsx       # All neighborhoods
+│   │   └── [slug]/        # Neighborhood detail
+│   ├── contact/           # Contact page
+│   └── api/
+│       └── contact/       # Contact form API
+├── components/            # Reusable UI components
+├── lib/
+│   ├── data.ts           # Mock data (demo mode)
+│   ├── supabase.ts       # Data access layer
+│   ├── types.ts          # TypeScript interfaces
+│   └── utils.ts          # Utility functions
+└── styles/
+    └── globals.css       # Global styles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run development server
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-To learn more about Next.js, take a look at the following resources:
+## Building for Production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Build with OpenNext for Cloudflare
+npx opennextjs-cloudflare build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The site is deployed to Cloudflare Workers:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Deploy to Cloudflare
+npx wrangler deploy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Current deployment:**
+- Workers URL: `elisa-realtor.coog-planner.workers.dev`
+- Custom domain: `elisa.visibleseed.com`
+
+## Configuration
+
+### wrangler.toml
+
+```toml
+name = "elisa-realtor"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
+
+[assets]
+directory = ".open-next/assets"
+
+[[routes]]
+pattern = "elisa.visibleseed.com/*"
+zone_id = "7f46227ce3dcd75bad3f266ebdb82f32"
+```
+
+### Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `DISCORD_CONTACT_WEBHOOK` | Discord webhook for contact form (optional) |
+
+## Design
+
+**Color Palette:**
+- Primary (Navy Blue): `#1e3a5f`
+- Accent (Gold): `#c9a227`
+- Background: `#ffffff`
+- Text: `#333333`
+
+**Typography:** Inter font family
+
+## Demo Mode
+
+Currently running in demo mode with mock data. To switch to database mode:
+
+1. Ensure Supabase tables are created (schema in `setup-db.mjs`)
+2. Set `USE_SUPABASE = true` in `src/lib/supabase.ts`
+3. Configure `SUPABASE_ANON_KEY` environment variable
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/contact` | POST | Submit contact form |
+
+### Contact Form Request
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "phone": "string (optional)",
+  "message": "string"
+}
+```
+
+## Future Enhancements
+
+- [ ] HAR.com data sync service (Playwright-based)
+- [ ] Admin panel for content management
+- [ ] Email notifications (replacing Discord webhook)
+- [ ] Status monitoring integration
+
+## License
+
+Private - All rights reserved.
