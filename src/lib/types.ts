@@ -46,11 +46,13 @@ export interface Review {
   id: string;
   har_review_id: string | null;
   reviewer_name: string | null;
+  reviewer_photo_url: string | null;
   rating: number | null;
   review_text: string | null;
   review_date: string | null;
   transaction_type: string | null;
   property_address: string | null;
+  har_url: string | null;
   created_at: string;
 }
 

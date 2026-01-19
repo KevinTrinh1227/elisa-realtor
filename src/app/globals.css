@@ -1,22 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #1e3a5f;
-  --primary-dark: #152a45;
+  /* Luxury Black/Gold/White Theme */
+  --black: #0a0a0a;
+  --black-light: #1a1a1a;
+  --black-medium: #2a2a2a;
+  --gold: #c9a227;
+  --gold-light: #d4b84a;
+  --gold-dark: #a68920;
+  --white: #ffffff;
+  --white-off: #f8f8f8;
+  --cream: #faf9f6;
+
+  /* Text colors */
+  --text-primary: #0a0a0a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #6b6b6b;
+  --text-light: #9a9a9a;
+
+  /* Legacy mappings */
+  --primary: #0a0a0a;
+  --primary-dark: #000000;
   --accent: #c9a227;
-  --accent-light: #d4b545;
+  --accent-light: #d4b84a;
   --background: #ffffff;
-  --foreground: #333333;
-  --gray-50: #f9fafb;
-  --gray-100: #f3f4f6;
-  --gray-200: #e5e7eb;
-  --gray-300: #d1d5db;
-  --gray-400: #9ca3af;
-  --gray-500: #6b7280;
-  --gray-600: #4b5563;
-  --gray-700: #374151;
-  --gray-800: #1f2937;
-  --gray-900: #111827;
+  --foreground: #0a0a0a;
+
+  /* Grays */
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f5;
+  --gray-200: #e4e4e7;
+  --gray-300: #d4d4d8;
+  --gray-400: #a1a1aa;
+  --gray-500: #71717a;
+  --gray-600: #52525b;
+  --gray-700: #3f3f46;
+  --gray-800: #27272a;
+  --gray-900: #18181b;
 }
 
 @theme inline {
@@ -43,65 +63,123 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.3;
-  color: var(--primary);
+  color: var(--black);
 }
 
 a {
   transition: color 0.2s ease;
 }
 
+/* Primary button - Gold */
 .btn-primary {
-  background-color: var(--accent);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  background-color: var(--gold);
+  color: var(--black);
+  padding: 0.875rem 2rem;
+  border-radius: 0;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.875rem;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-light);
-  transform: translateY(-1px);
+  background-color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
 }
 
+/* Secondary button - Black */
 .btn-secondary {
-  background-color: var(--primary);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.875rem 2rem;
+  border-radius: 0;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.875rem;
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-1px);
+  background-color: var(--black-light);
+  transform: translateY(-2px);
 }
 
+/* Outline button */
+.btn-outline {
+  background-color: transparent;
+  color: var(--black);
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--black);
+  border-radius: 0;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.btn-outline:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* Cards */
 .card {
   background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-100);
 }
 
 .card:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
+.card-luxury {
+  background: white;
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s ease;
+}
+
+.card-luxury:hover {
+  border-color: var(--gold);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Section titles */
 .section-title {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--black);
   margin-bottom: 1rem;
+  letter-spacing: -0.025em;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: var(--gray-600);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
 }
 
+.section-label {
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Container */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -120,6 +198,37 @@ a {
   }
 }
 
+/* Divider with gold accent */
+.divider-gold {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+
+.divider-gold-center {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 1.5rem auto;
+}
+
+/* Gold underline effect */
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -132,9 +241,70 @@ a {
 
 ::-webkit-scrollbar-thumb {
   background: var(--gray-400);
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-500);
+  background: var(--gold);
+}
+
+/* Star rating gold */
+.star-gold {
+  color: var(--gold);
+  fill: var(--gold);
+}
+
+/* Gradient backgrounds */
+.bg-gradient-luxury {
+  background: linear-gradient(135deg, var(--black) 0%, var(--black-light) 100%);
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+}
+
+/* Text gradient */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation for elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Reviewer avatar */
+.reviewer-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+
+.reviewer-initials {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
 }
